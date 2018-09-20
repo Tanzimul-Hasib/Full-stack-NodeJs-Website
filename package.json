@@ -1,0 +1,27 @@
+{
+  "name": "loginapp",
+  "version": "1.0.0",
+  "description": "simple registration login application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tanzimul Hasib",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "connect-flash": "*",
+    "cookie-parser": "^1.4.3",
+    "express": "*",
+    "express-handlebars": "*",
+    "express-validator": "*",
+    "express-session": "*",
+    "express-messages": "*",
+    "mongodb": "*",
+    "mongoose": "*",
+    "passport": "*",
+    "passport-local": "*",
+    "passport-http": "*"
+  }
+}
