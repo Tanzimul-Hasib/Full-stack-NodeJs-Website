@@ -13,6 +13,8 @@ var mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/loginapp');
 var db =mongoose.connections;
 
+var routes=require('./routes/index')
+var users=require('./routes/users')
 // Initialize app
 var app= express();
 
@@ -36,6 +38,9 @@ app.use(session({
     resave: true
 }));
 
+//Passport Init
+app.use(passport.initialize());
+app.use(passport.session());
 // Express validator #catvan *Middlewere
 app.use(expressValidator({
     errorFormatter: function(param, msg, value) {
@@ -58,14 +63,22 @@ app.use(expressValidator({
 
 app.use(flash());
 
+//Global varibles
+app.use(function (req,res,next) {
+    res.local.success_msg= req.flash('success_msg');
+    res.local.erorr_msg= req.flash('erorr_msg');
+    res.local.erorr= req.flash('erorr');
+    next();
+})
+
+app.use('/' , routes);
+app.use('/users', users);
 
 
-
-
-
-
-
-
+app.set('port',(process.env.PORT || 3000 ));
+app.listen(app.get(port),function () {
+  console.log('Server started at port'+ app.get(port));
+});
 
 
 
