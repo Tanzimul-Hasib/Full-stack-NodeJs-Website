@@ -14,5 +14,68 @@ mongoose.connect('mongodb://localhost/loginapp');
 var db =mongoose.connections;
 
 // Initialize app
-
 var app= express();
+
+//view Engine setup
+app.set('views', path.join(__dirname,'views'));
+app.engine('handlebars',expHandlebars({defaultLayout:'layout'}));
+app.set('view engine','handlebars');
+
+//Middlewere setup
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cookieParser());
+
+//Set public folder
+app.use(express.static(path.join(__dirname,'public')));
+
+//Express session
+app.use(session({
+    secret:'secret',
+    saveUninitialized:true,
+    resave: true
+}));
+
+// Express validator #catvan *Middlewere
+app.use(expressValidator({
+    errorFormatter: function(param, msg, value) {
+        var namespace = param.split('.')
+            , root    = namespace.shift()
+            , formParam = root;
+
+        while(namespace.length) {
+            formParam += '[' + namespace.shift() + ']';
+        }
+        return {
+            param : formParam,
+            msg   : msg,
+            value : value
+        };
+    };
+}));
+
+//Connect-Flash Middlewere
+
+app.use(flash());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
