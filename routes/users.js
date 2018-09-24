@@ -1,7 +1,7 @@
 var  express=require('express');
 var router=express.Router();
 
-//Register
+//Registration page
 router.get('/register',function (req,res) {
     res.render('register')
 });
@@ -11,3 +11,33 @@ router.get('/login',function (req,res) {
     res.render('login')
 });
 module.exports= router;
+
+// Register User
+router.post('/register',function (req,res) {
+
+        //adding from data to variable
+    var name = req.body.name;
+    var username = req.body.username;
+    var email = req.body.email;
+    var password = req.body.password;
+    var password2 = req.body.password2;
+
+    // Form validation
+    req.checkBody('name','Name is empty').notEmpty();
+    req.checkBody('username','Userame is empty').notEmpty();
+    req.checkBody('email','Email is required').notEmpty();
+    req.checkBody('email','Invalid Email').isEmail();
+    req.checkBody('password','Password is required').notEmpty();
+    req.checkBody('password2','Password do not match').equals(req.body.password);
+    console.log(name+' is trying to register with password '+password);
+
+    var errors =req.validationErrors();
+
+    if (errors){
+        res.render('register',{errors:errors});
+    }
+    else {
+        console.log('Passed')
+    }
+});
+
