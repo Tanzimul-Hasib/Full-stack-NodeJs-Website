@@ -1,5 +1,6 @@
 var  express=require('express');
 var router=express.Router();
+var User=require('../models/user');
 
 //Registration page
 router.get('/register',function (req,res) {
@@ -37,7 +38,20 @@ router.post('/register',function (req,res) {
         res.render('register',{errors:errors});
     }
     else {
-        console.log('Passed')
+        var newUser= new User({
+            name : name,
+            username:username,
+            email:email,
+            password:password
+        });
+
+        User.createUser(newUser,function (err,user) {
+            if (err){throw err};
+            console.log(user);
+        });
+
+        req.flash('success_msg','You are registered, Login Now');
+        res.redirect('/users/login')
     }
 });
 
