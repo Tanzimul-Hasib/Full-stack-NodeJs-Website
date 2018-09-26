@@ -1,6 +1,8 @@
 var  express=require('express');
 var router=express.Router();
 var User=require('../models/user');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
 //Registration page
 router.get('/register',function (req,res) {
@@ -11,7 +13,7 @@ router.get('/register',function (req,res) {
 router.get('/login',function (req,res) {
     res.render('login')
 });
-module.exports= router;
+
 
 // Register User
 router.post('/register',function (req,res) {
@@ -55,3 +57,19 @@ router.post('/register',function (req,res) {
     }
 });
 
+//Passport js login auth
+app.post('/login',
+    passport.authenticate('local', { successRedirect: '/',
+        failureRedirect: '/user/login',
+        failureFlash: true })
+
+        res.redirect('/');
+    });
+
+
+
+
+
+
+
+module.exports= router;
