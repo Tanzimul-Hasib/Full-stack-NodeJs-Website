@@ -18,6 +18,7 @@ res.render('login-register',{title:"Login"});
 // Register User
 router.post('/register', function (req, res) {
 	var name = req.body.name;
+	var phone= req.body.phone;
 	var email = req.body.email;
 	var username = req.body.username;
 	var password = req.body.password;
@@ -25,6 +26,7 @@ router.post('/register', function (req, res) {
 
 	// Validation
 	req.checkBody('name', 'Name is required').notEmpty();
+	req.checkBody('phone', 'Phone Number is required').notEmpty();
 	req.checkBody('email', 'Email is required').notEmpty();
 	req.checkBody('email', 'Email is not valid').isEmail();
 	req.checkBody('username', 'Username is required').notEmpty();
@@ -56,6 +58,7 @@ router.post('/register', function (req, res) {
 					var newUser = new User({
 						name: name,
 						email: email,
+						phone: phone,
 						username: username,
 						password: password
 					});

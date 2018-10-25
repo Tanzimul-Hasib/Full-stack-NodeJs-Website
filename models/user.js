@@ -8,6 +8,9 @@ var userSchema = mongoose.Schema({
         type:String,
         index:true
     },
+    phone:{
+        type:String,
+    },
     password:{
         type:String
     },
