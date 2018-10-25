@@ -7,12 +7,12 @@ var User = require('../models/user');
 
 // Register
 router.get('/register', function (req, res) {
-	res.render('register');
+	res.render('register-login',{title:"Register"});
 });
 
 //Login
 router.get('/login', function (req, res) {
-res.render('login');
+res.render('login-register',{title:"Login"});
 });
 
 // Register User
@@ -34,7 +34,7 @@ router.post('/register', function (req, res) {
 	var errors = req.validationErrors();
 
 	if (errors) {
-		res.render('register', {
+		res.render('login-register', {
 			errors: errors
 		});
 	}
@@ -47,7 +47,7 @@ router.post('/register', function (req, res) {
 				"$regex": "^" + email + "\\b", "$options": "i"
 		}}, function (err, mail) {
 				if (user || mail) {
-					res.render('register', {
+					res.render('register-login', {
 						user: user,
 						mail: mail
 					});

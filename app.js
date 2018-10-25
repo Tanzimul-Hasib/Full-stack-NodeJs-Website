@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// Set Static Folder
+// Set public Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Express Session
