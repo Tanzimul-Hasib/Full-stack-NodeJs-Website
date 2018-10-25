@@ -34,7 +34,7 @@ router.post('/register', function (req, res) {
 	var errors = req.validationErrors();
 
 	if (errors) {
-		res.render('login-register', {
+		res.render('register-login', {
 			errors: errors
 		});
 	}
