@@ -24,7 +24,7 @@ Visit http://localhost:3000 .
 # Author
 
 Tanzimul Hasib  
-tanzimul.hasib@gmail.com@gmail.com
+tanzimul.hasib@gmail.com
 
 Enjoy the code :-)
 
