@@ -6,12 +6,12 @@ var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/user');
 
 // Register
-router.get('/register', function (req, res) {
+router.get('/register',sureAuthenticated, function (req, res) {
 	res.render('register-login',{title:"Register"});
 });
 
 //Login
-router.get('/login', function (req, res) {
+router.get('/login', sureAuthenticated, function (req, res) {
 res.render('login-register',{title:"Login"});
 });
 
@@ -116,5 +116,19 @@ router.get('/logout', function (req, res) {
 
 	res.redirect('/users/login');
 });
+
+
+
+// authentication check 
+
+function sureAuthenticated(req,res,next){
+     if(req.isAuthenticated()){
+         res.redirect('/');
+     }
+     else {
+         //req.flash('error_msg','You are not logged in');
+         return next();
+     }
+};
 
 module.exports = router;
