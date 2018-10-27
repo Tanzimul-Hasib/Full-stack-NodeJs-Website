@@ -7,12 +7,12 @@ var User = require('../models/user');
 
 // Register
 router.get('/register',sureAuthenticated, function (req, res) {
-	res.render('register-login',{title:"Register"});
+	res.render('register-login',{title:"Register", layout: false});
 });
 
 //Login
 router.get('/login', sureAuthenticated, function (req, res) {
-res.render('login-register',{title:"Login"});
+res.render('login-register',{title:"Login", layout:false});
 });
 
 // Register User
@@ -37,7 +37,8 @@ router.post('/register', function (req, res) {
 
 	if (errors) {
 		res.render('register-login', {
-			errors: errors
+			errors: errors,
+			layout: false
 		});
 	}
 	else {
@@ -51,7 +52,8 @@ router.post('/register', function (req, res) {
 				if (user || mail) {
 					res.render('register-login', {
 						user: user,
-						mail: mail
+						mail: mail,
+						layout:false
 					});
 				}
 				else {

@@ -1,9 +1,17 @@
 /* Space out content a bit */
 body {
-  padding-top: 20px;
+  padding-top:0px;
   padding-bottom: 20px;
 }
+.body{
+    padding-top:20spx;
+    padding-bottom: 20px;
+}
 
+.search{
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,

@@ -1,0 +1,79 @@
+<% include ../../partials/header %>
+<br>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<a href="/events/add" class="btn btn-info"><%= appText.lines.buttons.events.btnAdd %></a>
+		</div>
+	</div>
+</div>
+<br>
+<% if(error != '') { %>
+	<% if (Array.isArray(error)){ %>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<p class="bg-danger">
+						<% for (var i = error.length - 1; i >= 0; i--) { %>
+							<%= error[i] %><br>
+						<%}%>
+					</p>
+				</div>
+			</div>
+		</div>
+	<%} else { %>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<p class="bg-danger"><%= error %></p>
+				</div>
+			</div>
+		</div>
+	<% } %>
+<br>
+<% } %>
+<% if(success != '') { %>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<p class="bg-success"><%= success %></p>
+		</div>
+	</div>
+</div>
+<br>
+<% } %>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<table class="table whiteBG">
+				<thead>
+					<tr>
+						<th class="id"><%= appText.lines.headings.tableHeadings.events.id %></th>
+						<th class="name"><%= appText.lines.headings.tableHeadings.events.name %></th>
+						<th class="location"><%= appText.lines.headings.tableHeadings.events.location %></th>
+						<th class="startDate"><%= appText.lines.headings.tableHeadings.events.startDate %></th>
+						<th class="endDate"><%= appText.lines.headings.tableHeadings.events.endDate %></th>
+						<th class="actions text-center"><%= appText.lines.headings.tableHeadings.events.actions %></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% items.forEach(function(item) { %>
+				        <tr>
+				        	<td><strong><%= item.e_id %></strong></td>
+				        	<td><%= item.e_name %></td>
+				        	<td><%= item.e_location %><br /><small><%= item.e_description %></small></td>
+							<td><%= moment(item.e_start_date).format('DD-MM-YYYY'); %></td>
+							<td><%= moment(item.e_end_date).format('DD-MM-YYYY'); %></td>
+							<td class="text-center">
+								<a href="/events/<%= item.e_id %>" class="btn btn-sm btn-success">Edit</a>
+								<a href="/events/delete/<%= item.e_id %>" class="btn btn-sm btn-danger">Delete</a>
+							</td>
+				        </tr>
+				    <% }); %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<% include ../../partials/footer %>
