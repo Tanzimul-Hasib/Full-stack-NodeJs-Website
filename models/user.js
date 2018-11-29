@@ -21,8 +21,9 @@ var userSchema = mongoose.Schema({
         type:String
     }
 });
+
 //Setup Mongodb connection In User variable
-var User= module.exports=mongoose.model('user',userSchema);
+var User= module.exports=mongoose.model('user',userSchema); //'S'will be added after user in collection name
 //Create User while registration
 module.exports.createUser=function (newUser,callback) {
     bcrypt.genSalt(10, function(err, salt) {
@@ -33,6 +34,8 @@ module.exports.createUser=function (newUser,callback) {
         });
     });
 };
+
+
 //login modules
 module.exports.getUserByUsername = function (username,callback) {
     var query={username:username};
@@ -50,3 +53,5 @@ module.exports.comparePassword = function (candidatePassword,hash,callback) {
 module.exports.getUserById = function (id,callback) {
      User.findById(id,callback);
 }
+
+

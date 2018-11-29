@@ -15,7 +15,7 @@ var mongoose          = require('mongoose');
 var moment            = require('moment');
 
 mongoose.connect('mongodb://localhost/loginapp', { useNewUrlParser: true });
-var db = mongoose.connection;
+// var db = mongoose.connection;
 
 
 
@@ -31,10 +31,11 @@ app.use('/css',express.static(__dirname + '/styles/css'));
 
 
 
-
+// Define file & folders
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var events = require('./routes/events');
+
 
 
 // View Engine
@@ -92,7 +93,7 @@ app.use(function (req, res, next) {
 });
 
 
-
+// connecting files with app js
 app.use('/', routes);
 app.use('/users', users);
 app.use('/events', events);

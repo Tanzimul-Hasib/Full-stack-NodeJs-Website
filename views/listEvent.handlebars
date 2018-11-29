@@ -54,8 +54,8 @@
 				        	<td><strong> {{ item.e_id }}</strong></td>
 				        	<td> {{ item.e_name }}</td>
 				        	<td> {{ item.e_location }}<br /><small> {{ item.e_description }}</small></td>
-							<td> {{ item.e_start_date}}</td>
-							<td> {{ item.e_end_date }}</td>
+							<td> {{ item.e_date}}</td>
+							<!-- <td> {{ item.e_time }}</td> -->
 							<td class="text-center">
 								<a href="/events/ {{ item.e_id }}" class="btn btn-sm btn-success">Edit</a>
 								<a href="/events/delete/ {{ item.e_id }}" class="btn btn-sm btn-danger">Delete</a>
